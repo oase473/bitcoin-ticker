@@ -13,16 +13,7 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.post("/", function(req, res) {
-  if (req.body.email) {
-    console.log(req.body.email);
-  } else {
-    console.log("empty email");
-  }
-  res.redirect("/");
-});
-
-app.get("/indices/global/ticker/BTCUSD", function(req, res) {
+app.post("/bitcoin", function(req, res) {
   request("https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD", function(error, response, body) {
     console.log(body);
     var jsonData = JSON.parse(body);
@@ -32,6 +23,6 @@ app.get("/indices/global/ticker/BTCUSD", function(req, res) {
   });
 });
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(3001, function() {
   console.log("Server is running...");
 });
